@@ -24,7 +24,12 @@
         </div>
         <div class="row mt-3">
             <div class="col">
-                <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email">
+                <input name="email"
+                       value="{{ old('email', isset($user) ? $user->email : null) }}"
+                       type="text" class="form-control" placeholder="Email" aria-label="email">
+                @error('email')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
         <div class="row mt-4">
