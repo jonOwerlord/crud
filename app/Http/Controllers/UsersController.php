@@ -33,11 +33,12 @@ class UsersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-
+        User::create($request->only(['name', 'email']));
+        return redirect()->route('users.index');
     }
 
     /**
@@ -67,11 +68,12 @@ class UsersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->only(['name', 'email']));
+        return redirect()->route('users.index');
     }
 
     /**
